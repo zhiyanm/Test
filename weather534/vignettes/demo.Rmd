@@ -1,0 +1,121 @@
+---
+title: "Weather Query Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+## Package Description
+
+This is a R package wrapped with a weather query API which support functions: current weather query, five days' weather forecast, current weather list for cities with same name, and five days' historical weather query.
+
+## Test Coverage
+
+```{r, echo=FALSE, out.width="70%", out.height="70%"}
+#library(covr)
+#report()
+#knitr::include_graphics("coverage.png")
+```
+
+
+## Demo for package 'weather534'
+
+```{r}
+library(weather534)
+```
+
+### Five Days Weather Forecast Function demo (w1.R)
+
+Five Days Weather Forecast function is available at any location or city, user can input city name and country code (optionally) to get weather forecasts for this city for five days including its weather description, temperature in Celsius, felt air temperature in Celsius and air humidity.
+
+`Sample Inputs`
+
+- fiveday("Vancouver")
+
+- fiveday("vancouver, ca")
+
+- fiveday("Vancouver, CA")
+
+- fiveday("VANCOUVER, CA")
+
+`NOTE` If no location matches user input, there would be error message returned indicating the recommended input format.
+
+```{r}
+fiveDay('vancouver, ca')
+```
+
+```{r}
+fiveDay('vvv')
+```
+
+### Current Weather Query Function demo (w2.R)
+
+Current Weather Query function is available at any location or city, user can input city name and country code (optionally) to get the current weather description for this city including current date and time, its weather description, temperature in Celsius/Fahrenheit/Kelvin, felt air temperature in Celsius/Fahrenheit/Kelvin, pressure value, air humidity, current visibility and current wind speed.
+
+`Sample Inputs`
+
+- current("coquitlam")
+
+- current("coquitlam, ca")
+
+- current("Coquitlam, CA")
+
+- current("COQUITLAM, CA")
+
+`NOTE` If no location matches user input, there would be error message returned indicating the recommended input format.
+
+```{r}
+current('coquitlam')
+```
+
+```{r}
+current('ccc')
+```
+
+### Historical weather data (w3.R)
+
+To get access to historical weather data for the 5 previous days
+
+lat, lon geographical coordinates (latitude, longitude)
+dt date from the 5 previous days (unix time, UTC time zone), e.g. dt=1586468027
+
+`Sample Inputs`
+
+- historical_weather("1613547787")
+- historical_weather("1586468027")
+
+`NOTE` If no location matches user input, there would be error message returned indicating the recommended input format.
+
+```{r}
+historical_weather("012")
+```
+
+```{r}
+historical_weather("1613547787")
+
+```
+
+### Search Weather Data (w4.R)
+
+By city name. Input the city name or its part and get the list of the most proper cities in the world. Example - Lon or Lond or London. The more precise city name you put the more precise list you will get. To make it more precise put the city's name or its part, comma, the name of the county or 2-letter country code. You will get all proper cities in chosen county. The order is important - the first is city name than comma than county. Example - Lon, UK or Lon, GB or London, GB or Lon, England. By geographic coordinates.
+
+`Sample Inputs`
+
+- search_weather('london')
+- search_weather('london, UK')
+
+`NOTE` If no location matches user input, there would be error message returned indicating the recommended input format.
+
+```{r}
+search_weather('london')
+```
+
+
+```{r}
+search_weather('nn')
+```
+
+
+
+
